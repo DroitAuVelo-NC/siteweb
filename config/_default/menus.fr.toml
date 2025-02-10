@@ -1,0 +1,62 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "Accueil"
+url = "/"
+weight = 1
+
+[[main]]
+name = "A propos"
+url = "/a-propos"
+weight = 2
+
+# [[main]]
+# name = "Elements"
+# url = "/elements"
+# weight = 3
+
+# [[main]]
+# weight = 4
+# name = "Pages"
+
+# [[main]]
+# parent = "Pages"
+# name = "Blog"
+# url = "/blog"
+
+[[main]]
+name = "Contact"
+url = "/contact"
+
+# [[main]]
+# parent = "Pages"
+# name = "Authors"
+# url = "/authors"
+
+# [[main]]
+# parent = "Pages"
+# name = "Categories"
+# url = "/categories"
+
+# # [[main]]
+# parent = "Pages"
+# name = "404 Page"
+# url = "/404"
+
+
+# footer menu
+[[footer]]
+name = "A propos"
+url = "/a-propos"
+weight = 1
+
+[[footer]]
+name = "Contact"
+url = "/contact"
+weight = 2
+
+[[footer]]
+name = "Adhérer à l'association"
+url = "https://www.helloasso.com/associations/droit-au-velo-davnc/adhesions/bulletin-d-adhesion-droit-au-velo-nc"
+weight = 3
