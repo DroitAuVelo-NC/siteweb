@@ -1,6 +1,6 @@
 ---
 title: "Contact"
 meta_title: ""
-description: "this is meta description"
+description: "Contacter l'association Droit au vélo NC"
 draft: false
 ---
