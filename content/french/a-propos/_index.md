@@ -1,6 +1,6 @@
 ---
 title: "Droit au vélo Nouvelle-Calédonie"
-meta_title: "A propos"
+meta_title: "Développer la pratique du vélo comme mode de déplacement propre et économique"
 description: "Promouvoir et développer la pratique du vélo en Nouvelle-Calédonie"
 image: "/images/avatar.png"
 draft: false
