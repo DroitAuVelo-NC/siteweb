@@ -1,10 +1,13 @@
 {{ define "main" }}
 <section class="container mx-auto py-10">
     <h2 class="text-2xl font-bold mb-4">Signaler un point noir</h2>
-    <p>Click on the map to set your location or use the button below to auto-detect it.</p>
+    <p>Cliquer sur la carte afin de pointer le lieu du point de signalement.</p>
 
-    <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2">Use My Location</button>
-    <div id="map" class="mt-4 rounded border" style="height: 500px;"></div>
+    <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Utiliser ma localisation</button>
+    
+    <section class="min-h-[400px]">
+        <div id="map_signalement" class="mt-4 rounded border min-h-auto"></div>
+    </section>
 
     <form class="mt-4" method="POST" action="/submit-form">
         <label for="name" class="block font-semibold">Name:</label>
@@ -22,7 +25,7 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-    var map = L.map('map').setView([-22.2758, 166.458], 13);
+    var map = L.map('map_signalement').setView([-22.2758, 166.458], 13);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
