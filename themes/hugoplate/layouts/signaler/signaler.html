@@ -5,19 +5,26 @@
 
     <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Utiliser ma localisation</button>
     
-    <section class="min-h-[400px]">
-        <div id="map_signalement" class="mt-4 rounded border min-h-auto"></div>
+    <section>
+        <div id="map_signalement" class="mt-4 rounded border min-h-[350px]"></div>
     </section>
 
     <form class="mt-4" method="POST" action="/submit-form">
-        <label for="name" class="block font-semibold">Name:</label>
-        <input type="text" id="name" name="name" class="w-full border p-2 rounded mb-2" required>
+        <label for="name" class="block font-semibold">Nom :</label>
+        <input type="text" id="name" name="name" class="w-full border p-2 rounded mb-2 form-input" required>
 
-        <label for="email" class="block font-semibold">Email:</label>
-        <input type="email" id="email" name="email" class="w-full border p-2 rounded mb-2" required>
+        <label for="email" class="block font-semibold">Email :</label>
+        <input type="email" id="email" name="email" class="w-full border p-2 rounded mb-2 form-input" required>
+        <label for="message" class="block font-semibold">Description :</label>
+        <textarea
+            id="message"
+            name="message"
+            class="form-input"
+            placeholder="Description de la situation..."
+            rows="8">
+        </textarea>
 
-        <label for="coords" class="block font-semibold">Coordinates:</label>
-        <input type="text" id="coords" name="coords" class="w-full border p-2 rounded mb-2" readonly required>
+        <input type="hidden" id="coords" name="coords" class="w-full border p-2 rounded mb-2" readonly required>
 
         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Envoyer</button>
     </form>
