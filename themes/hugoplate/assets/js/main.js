@@ -34,6 +34,9 @@
     },
   });
 
+  // Check if the map element exists before initializing the map
+  const mapElement = document.getElementById('map_signalement');
+  if (mapElement) {
   // MAP
   var map = L.map('map_signalement').setView([-22.2758, 166.458], 13);
     
@@ -83,5 +86,6 @@
             alert('Geolocation is not supported by your browser.');
         }
     });
-  
+  }
+
 })();
