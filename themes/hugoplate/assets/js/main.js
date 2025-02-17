@@ -53,7 +53,7 @@
                 fileName: fileInput.name,
                 email: document.getElementById("email").value,
                 latitude: document.getElementById("long").value,
-                longitude: document.getElementById("lat").value
+                longitude: document.getElementById("lat").value,
             };
             
             // Envoi des données à Google Apps Script
