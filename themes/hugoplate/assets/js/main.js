@@ -52,8 +52,8 @@
                 fileType: fileInput.type,
                 fileName: fileInput.name,
                 email: document.getElementById("email").value,
-                latitude: document.getElementById("coords").value,
-                longitude: document.getElementById("longitude").value
+                latitude: document.getElementById("long").value,
+                longitude: document.getElementById("lat").value
             };
             
             // Envoi des données à Google Apps Script
@@ -82,6 +82,8 @@
 
   function updateCoordinates(lat, lng) {
      document.getElementById('coords').value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+     document.getElementById('long').value = `${lng.toFixed(6)}`;
+     document.getElementById('lat').value = `${lat.toFixed(6)}`;
   }
 
   map.on('click', function(e) {
@@ -114,10 +116,10 @@
                 map.setView([lat, lng], 13);
                 updateCoordinates(lat, lng);
             }, function(error) {
-                alert('Geolocation failed: ' + error.message);
+                alert('Geolocation impossible: ' + error.message);
             });
         } else {
-            alert('Geolocation is not supported by your browser.');
+            alert('Geolocation non supportée par votre appareil.');
         }
     });
   }
