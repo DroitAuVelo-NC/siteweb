@@ -35,6 +35,32 @@
   });
 
 
+  const options = {
+    "Signalisation": ["Manquante", "Illisible", "Mal positionnée", "Détériorée"],
+    "Chaussee": ["Barrée par un obstacle", "Revêtement en mauvais état", "Inondation"],
+    "Travaux": ["Non signalés", "Déviation non-indiquée", "Déviation provisoire"],
+    "Mobilier": ["Endommagé", "Suggestion d'équipement"],
+    "Espace": ["Dépôt sauvage", "Besoin d'élagage", "Besoin de fauchage", "Besoin de nettoyage"]
+  };
+
+  function updateSubSelect() {
+      const mainSelect = document.getElementById("type_signalement");
+      const subSelect = document.getElementById("subSelect");
+      
+      subSelect.innerHTML = '<option value="">-- Selectionner une sous-catégorie --</option>';
+      
+      if (mainSelect.value) {
+          options[mainSelect.value].forEach(subOption => {
+              let optionElement = document.createElement("option");
+              optionElement.value = subOption;
+              optionElement.textContent = subOption;
+              subSelect.appendChild(optionElement);
+          });
+      }
+  }
+
+  document.getElementById("type_signalement").addEventListener("change", updateSubSelect);
+
   const signalerElement = document.getElementById('signaler');
   if (signalerElement) {
     signalerElement.addEventListener("submit", async function(event) {
@@ -53,7 +79,9 @@
                 fileName: fileInput.name,
                 email: document.getElementById("email").value,
                 type_signalement: document.getElementById("type_signalement").value,
+                subSelect: document.getElementById("subSelect").value,
                 description: document.getElementById("description").value,
+                keepmeupdate: document.getElementById("keepmeupdate").value,
                 latitude: document.getElementById("long").value,
                 longitude: document.getElementById("lat").value,
             };
@@ -69,7 +97,7 @@
             // If result is succes     
             if (result.success) {
                 document.getElementById("signaler").reset();
-                document.getElementById("static-modal");
+                document.getElementById("static-modal").style.display = "block";
             } else {
                 alert("Une erreur s'est produite lors de l'envoi du signalement.");
             }
@@ -132,5 +160,6 @@
         }
     });
   }
+
 
 })();
