@@ -1,7 +1,7 @@
+
 // main script
 (function () {
   "use strict";
-
   // Dropdown Menu Toggler For Mobile
   // ----------------------------------------
   const dropdownMenuToggler = document.querySelectorAll(
@@ -58,11 +58,10 @@
           });
       }
   }
-
-  document.getElementById("type_signalement").addEventListener("change", updateSubSelect);
-
+  
   const signalerElement = document.getElementById('signaler');
   if (signalerElement) {
+    document.getElementById("type_signalement").addEventListener("change", updateSubSelect);
     signalerElement.addEventListener("submit", async function(event) {
         event.preventDefault();
         
