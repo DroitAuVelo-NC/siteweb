@@ -52,12 +52,14 @@
                 fileType: fileInput.type,
                 fileName: fileInput.name,
                 email: document.getElementById("email").value,
+                type_signalement: document.getElementById("type_signalement").value,
+                description: document.getElementById("description").value,
                 latitude: document.getElementById("long").value,
                 longitude: document.getElementById("lat").value,
             };
             
-            // Envoi des données à Google Apps Script
-            let response = await fetch("https://white-truth-2869.ivan-zupancic.workers.dev", {
+            // Envoi des données à Google Apps Script via cloudflare
+            let response = await fetch("https://white-truth-2869.droitauvelo-nc.workers.dev", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: { "Content-Type": "application/json" }
