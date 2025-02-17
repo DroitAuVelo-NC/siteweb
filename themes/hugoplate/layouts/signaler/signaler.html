@@ -7,10 +7,21 @@
     </section>
     <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Utiliser ma geolocalisation</button>
     <form class="mt-4" id="signaler" method="POST">
+        <label for="type_signalement">Type de signalement :</label>
+        <select id="type_signalement">
+            <option value="travaux_route">Travaux sur la route</option>
+            <option value="route_bloquee">Route bloquée</option>
+            <option value="amenagement_dangereux">Aménagement dangereux</option>
+            <option value="stationnement_geneant">Stationnement génant</option>
+            <option value="danger">Danger</option>
+            <option value="suggerer_amenagement">Suggestion d'aménagement cyclable</option>
+            <option value="amenagement_degrade">Aménagement cyclable dégradé</option>
+        </select>
+        
         <label for="fileInput">Choisir une photo pour illustrer le signalement :</label>
         <input type="file" id="fileInput" name="photo" class="form-input" accept="image/png, image/jpeg" required />
-        <label for="message" class="block">Décrire briévenement le signalement :</label>
-        <textarea id="message" name="message" class="form-input" placeholder="Description de la situation ..." rows="6"></textarea>
+        <label for="description" class="block">Décrire briévenement le signalement :</label>
+        <textarea id="description" name="description" class="form-input" placeholder="Description de la situation ..." rows="6"></textarea>
         <input type="hidden" id="coords" name="coords" class="w-full border p-2 rounded mb-2" readonly required>
         <input type="hidden" id="long" name="long" readonly required>
         <input type="hidden" id="lat" name="lat" readonly required>
