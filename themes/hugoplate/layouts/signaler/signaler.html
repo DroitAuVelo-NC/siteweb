@@ -1,14 +1,14 @@
 {{ define "main" }}
 <section class="container mx-auto py-10">
-    <h2 class="text-2xl font-bold mb-4">Signaler un point noir</h2>
-    <p>Cliquer sur la carte afin de pointer le lieu à signaler ou utiliser la géolocalisation.</p>
+    <h2 class="text-2xl font-bold mb-4">Signalement d'une anomalie</h2>
     <section>
         <div id="map_signalement" class="mt-4 rounded border min-h-[300px]"></div>
     </section>
-    <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Utiliser ma geolocalisation</button>
+    <p class="mt-4">Cliquer sur la carte afin de pointer le lieu à signaler ou utiliser la géolocalisation.</p>
+    <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Me géolocaliser</button>
     <form class="mt-4" id="signaler" method="POST">
-        <label for="type_signalement" class="mt-2">Catégorie :</label>
-        <select id="type_signalement" class="form-input" required>
+        <label for="type_signalement" class="mt-4 block">Catégorie :</label>
+        <select id="type_signalement" class="form-input mt-2" required>
             <option value="">-- Séléctionner une catégorie --</option>
             <option value="Signalisation">Signalisation</option>
             <option value="Chaussee">Chaussée</option>
@@ -17,27 +17,27 @@
             <option value="Espace">Espace verts / Propreté</option>
         </select>
     
-        <label for="subSelect">Sous-catégorie :</label>
-        <select id="subSelect" class="form-input" required>
+        <label for="subSelect" class="mt-4 block">Sous-catégorie :</label>
+        <select id="subSelect" class="form-input mt-2" required>
             <option value="">-- Séléctionner une sous-catégorie --</option>
         </select>
         
-        <label for="fileInput" class="mt-2">Photo d'illustration :</label>
-        <input type="file" id="fileInput" name="photo" class="form-input" accept="image/png, image/jpeg" required />
+        <label for="fileInput" class="mt-4 block">Photo d'illustration :</label>
+        <input type="file" id="fileInput" name="photo" class="form-input mt-2" accept="image/png, image/jpeg" required />
         
-        <label for="description" class="block mt-2">Description :</label>
-        <textarea id="description" name="description" class="form-input" placeholder="Description ..." rows="6"></textarea>
+        <label for="description" class="block mt-4">Description :</label>
+        <textarea id="description" name="description" class="form-input mt-2" placeholder="Description ..." rows="6"></textarea>
         <input type="hidden" id="coords" name="coords" class="w-full border p-2 rounded mb-2" readonly required>
         <input type="hidden" id="long" name="long" readonly required>
         <input type="hidden" id="lat" name="lat" readonly required>
 
-        <label for="email" class="block mt-2">Email :</label>
-        <input type="email" id="email" name="email" class="w-full border p-2 rounded mb-2 form-input">
-        <label for="keepmeupdate" class="block mt-2">
+        <label for="email" class="block mt-4">Email :</label>
+        <input type="email" id="email" name="email" class="w-full border p-2 rounded mb-2 mt-2 form-input">
+        <label for="keepmeupdate" class="block mt-4 mb-2">
             <input type="checkbox" id="keepmeupdate" name="keepmeupdate" class="form-checkbox">
             Je souhaite être informé(e) de l'évolution de mon signalement
         </label>
-        <button type="submit" class="mt-2 bg-green-500 text-white px-4 py-2 rounded">Envoyer</button>
+        <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded">Envoyer</button>
     </form>
 
 
