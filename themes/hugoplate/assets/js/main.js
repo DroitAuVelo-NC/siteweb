@@ -65,7 +65,14 @@
                 headers: { "Content-Type": "application/json" }
             });
             
-            let result = await response.json();      
+            let result = await response.json(); 
+            // If result is succes     
+            if (result.success) {
+                document.getElementById("signaler").reset();
+                document.getElementById("static-modal");
+            } else {
+                alert("Une erreur s'est produite lors de l'envoi du signalement.");
+            }
         };
     });
   }
