@@ -79,7 +79,7 @@
                 fileName: fileInput.name,
                 email: document.getElementById("email").value,
                 type_signalement: document.getElementById("type_signalement").value,
-                subSelectq: document.getElementById("subSelect").value,
+                subSelect: document.getElementById("subSelect").value,
                 description: document.getElementById("description").value,
                 keepmeupdate: document.getElementById("keepmeupdate").value,
                 latitude: document.getElementById("long").value,
