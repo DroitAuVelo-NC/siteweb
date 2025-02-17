@@ -79,7 +79,7 @@
                 fileName: fileInput.name,
                 email: document.getElementById("email").value,
                 type_signalement: document.getElementById("type_signalement").value,
-                subSelect: document.getElementById("subSelect").value,
+                subSelectq: document.getElementById("subSelect").value,
                 description: document.getElementById("description").value,
                 keepmeupdate: document.getElementById("keepmeupdate").value,
                 latitude: document.getElementById("long").value,
@@ -95,7 +95,7 @@
             
             let result = await response.json(); 
             // If result is succes     
-            if (result.success) {
+            if (response.ok) {
                 document.getElementById("signaler").reset();
                 document.getElementById("static-modal").style.display = "block";
             } else {
