@@ -72,3 +72,7 @@ main {
     @apply dark:hover:text-dark no-underline hover:text-white #{!important};
   }
 }
+
+#map_signalement{
+  z-index:1;
+}
