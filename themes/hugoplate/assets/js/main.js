@@ -34,9 +34,43 @@
     },
   });
 
+
+  const signalerElement = document.getElementById('signaler');
+  if (signalerElement) {
+    signalerElement.addEventListener("submit", async function(event) {
+        event.preventDefault();
+        
+        let fileInput = document.getElementById("fileInput").files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(fileInput);
+        
+        reader.onload = async function() {
+            let base64File = reader.result.split(',')[1];
+            
+            let data = {
+                file: base64File,
+                fileType: fileInput.type,
+                fileName: fileInput.name,
+                email: document.getElementById("email").value,
+                latitude: document.getElementById("coords").value,
+                longitude: document.getElementById("longitude").value
+            };
+            
+            // Envoi des données à Google Apps Script
+            let response = await fetch("https://white-truth-2869.ivan-zupancic.workers.dev", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: { "Content-Type": "application/json" }
+            });
+            
+            let result = await response.json();      
+        };
+    });
+  }
+  
   // Check if the map element exists before initializing the map
   const mapElement = document.getElementById('map_signalement');
-  if (mapElement) {
+  if (mapElement) {   
   // MAP
   var map = L.map('map_signalement').setView([-22.2758, 166.458], 13);
     
