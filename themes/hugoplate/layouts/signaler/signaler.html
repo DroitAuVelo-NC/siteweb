@@ -1,23 +1,23 @@
 {{ define "main" }}
 <section class="container mx-auto py-10">
     <h2 class="text-2xl font-bold mb-4">Signaler un point noir</h2>
-    <p>Cliquer sur la carte afin de pointer le lieu du point de signalement.</p>
-
-    <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Utiliser ma localisation</button>
+    <p>Cliquer sur la carte afin de pointer le lieu à signaler ou utiliser la géolocalisation.</p>
     <section>
-        <div id="map_signalement" class="mt-4 rounded border min-h-[350px]"></div>
+        <div id="map_signalement" class="mt-4 rounded border min-h-[300px]"></div>
     </section>
-
+    <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Utiliser ma geolocalisation</button>
     <form class="mt-4" id="signaler" method="POST">
         <label for="fileInput">Choisir une photo pour illustrer le signalement :</label>
         <input type="file" id="fileInput" name="photo" class="form-input" accept="image/png, image/jpeg" required />
-        <label for="email" class="block font-semibold">Email :</label>
-        <input type="email" id="email" name="email" class="w-full border p-2 rounded mb-2 form-input" required>
-        <label for="message" class="block font-semibold">Description :</label>
-        <textarea id="message" name="message" class="form-input" placeholder="Description de la situation ..." rows="8"></textarea>
+        <label for="message" class="block">Décrire briévenement le signalement :</label>
+        <textarea id="message" name="message" class="form-input" placeholder="Description de la situation ..." rows="6"></textarea>
         <input type="hidden" id="coords" name="coords" class="w-full border p-2 rounded mb-2" readonly required>
         <input type="hidden" id="long" name="long" readonly required>
-        <input type="hidden" id="long" name="lat" readonly required>
+        <input type="hidden" id="lat" name="lat" readonly required>
+
+        <label for="email" class="block">Email :</label>
+        <input type="email" id="email" name="email" class="w-full border p-2 rounded mb-2 form-input" required>
+        
         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Envoyer</button>
     </form>
 </section>
