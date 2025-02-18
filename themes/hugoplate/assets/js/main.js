@@ -103,8 +103,10 @@
             // If result is succes     
             if (response.ok) {
                 modalTitle = document.getElementById("modal-title");
+                modalContent= document.getElementById("modal-content");
+                
                 modalTitle.innerHTML = "Félicitation, le signalement a bien été envoyé !";
-
+                modalContent.innerHTML = "Merci pour votre contribution à l'amélioration de notre territoire. <a href='/signaler' target='_blank'>Fermer</a>";
                 document.getElementById("signaler").reset();
                 //confirmationModal.classList.add("hidden");
             } else {
