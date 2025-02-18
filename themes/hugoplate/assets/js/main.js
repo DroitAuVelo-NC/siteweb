@@ -80,7 +80,6 @@
         
         reader.onload = async function() {
             let base64File = reader.result.split(',')[1];
-            
             let data = {
                 file: base64File,
                 fileType: fileInput.type,
@@ -89,7 +88,7 @@
                 type_signalement: document.getElementById("type_signalement").value,
                 subSelect: document.getElementById("subSelect").value,
                 description: document.getElementById("description").value,
-                keepmeupdate: document.getElementById("keepmeupdate").value,
+                keepmeupdate: document.getElementById("keepmeupdate").checked,
                 latitude: document.getElementById("long").value,
                 longitude: document.getElementById("lat").value,
             };
