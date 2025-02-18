@@ -75,6 +75,11 @@
         event.preventDefault();
         confirmationModal.classList.remove("hidden");
         let fileInput = document.getElementById("fileInput").files[0];
+        let pointOI = document.getElementById("coords").value;
+        if(pointOI === "") {
+          alert("Veuillez saisir un point sur la carte.");
+          return;
+        }
         let reader = new FileReader();
         reader.readAsDataURL(fileInput);
         
@@ -107,9 +112,8 @@
               
                 
                 modalTitle.innerHTML = "Félicitation, le signalement a bien été envoyé !";
-                modalContent.innerHTML = "Merci pour votre contribution à l'amélioration de notre territoire. <a href='/signaler' target='_blank'>Fermer</a>";
+                modalContent.innerHTML = "Merci pour votre contribution à l'amélioration de notre territoire. <br /><a href='/'>Retour à la page d'accueil</a>";
                 document.getElementById("signaler").reset();
-                //confirmationModal.classList.add("hidden");
             } else {
                 alert("Une erreur s'est produite lors de l'envoi du signalement.");
             }
