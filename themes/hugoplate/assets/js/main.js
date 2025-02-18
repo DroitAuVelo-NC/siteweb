@@ -61,10 +61,16 @@
   
   const signalerElement = document.getElementById('signaler');
   if (signalerElement) {
+
+    // Modal
+    const confirmationModal = document.getElementById("confirmModal");
+    confirmationModal.classList.add("hidden");
+
+    // Update sub select when main select changes
     document.getElementById("type_signalement").addEventListener("change", updateSubSelect);
     signalerElement.addEventListener("submit", async function(event) {
         event.preventDefault();
-        
+        confirmationModal.classList.remove("hidden");
         let fileInput = document.getElementById("fileInput").files[0];
         let reader = new FileReader();
         reader.readAsDataURL(fileInput);
@@ -92,11 +98,15 @@
                 headers: { "Content-Type": "application/json" }
             });
             
-            let result = await response.json(); 
+            let result = await response.json();
+
             // If result is succes     
             if (response.ok) {
+                $modalTitle = document.getElementById("modal-title");
+                $modalTitle.innerHTML = "Félécitation, le signalement a bien été envoyé !";
+
                 document.getElementById("signaler").reset();
-                document.getElementById("static-modal").style.display = "block";
+                confirmationModal.classList.remove("hidden");
             } else {
                 alert("Une erreur s'est produite lors de l'envoi du signalement.");
             }
@@ -159,6 +169,30 @@
         }
     });
   }
+// Back to top
 
+// Get the button
+const mybutton = document.getElementById("btn-back-to-top");
+
+// When the user scrolls down 20px from the top of the document, show the button
+
+const scrollFunction = () => {
+  if (
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
+  ) {
+    mybutton.classList.remove("hidden");
+  } else {
+    mybutton.classList.add("hidden");
+  }
+};
+const backToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+
+window.addEventListener("scroll", scrollFunction);
 
 })();
