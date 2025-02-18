@@ -102,11 +102,11 @@
 
             // If result is succes     
             if (response.ok) {
-                $modalTitle = document.getElementById("modal-title");
-                $modalTitle.innerHTML = "Félécitation, le signalement a bien été envoyé !";
+                modalTitle = document.getElementById("modal-title");
+                modalTitle.innerHTML = "Félicitation, le signalement a bien été envoyé !";
 
                 document.getElementById("signaler").reset();
-                confirmationModal.classList.remove("hidden");
+                //confirmationModal.classList.add("hidden");
             } else {
                 alert("Une erreur s'est produite lors de l'envoi du signalement.");
             }
