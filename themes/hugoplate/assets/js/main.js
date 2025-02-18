@@ -73,13 +73,14 @@
     document.getElementById("type_signalement").addEventListener("change", updateSubSelect);
     signalerElement.addEventListener("submit", async function(event) {
         event.preventDefault();
-        confirmationModal.classList.remove("hidden");
+       
         let fileInput = document.getElementById("fileInput").files[0];
         let pointOI = document.getElementById("coords").value;
         if(pointOI === "") {
           alert("Veuillez saisir un point sur la carte.");
           return;
         }
+        confirmationModal.classList.remove("hidden");
         let reader = new FileReader();
         reader.readAsDataURL(fileInput);
         
