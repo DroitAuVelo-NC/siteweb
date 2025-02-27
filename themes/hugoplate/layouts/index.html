@@ -11,23 +11,25 @@
             <p class="mb-8">
               {{ .content | markdownify }}
             </p>
-            {{ with .button }}
-              {{ if .enable }}
-                <a
-                  class="btn btn-primary"
-                  href="{{ .link | absURL }}"
-                  {{ if strings.HasPrefix .link `http` }}
-                    target="_blank" rel="noopener"
-                  {{ end }}>
-                  {{ .label }}
-                  <i class="fa fa-arrow-right pl-2"></i>
-                </a>
-              {{ end }}
-            {{ end }}
           </div>
           <div class="col-12">
             {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" "DisplayXL" "800x" ) }}
           </div>
+        <div class="lg:col-7 md:col-9 mb-8 text-center mt-4">
+          {{ with .button }}
+          {{ if .enable }}
+            <a
+              class="btn btn-primary"
+              href="{{ .link | absURL }}"
+              {{ if strings.HasPrefix .link `http` }}
+                target="_blank" rel="noopener"
+              {{ end }}>
+              {{ .label }}
+              <i class="fa fa-arrow-right pl-2"></i>
+            </a>
+          {{ end }}
+        {{ end }}
+        </div>
         </div>
       </div>
     </section>

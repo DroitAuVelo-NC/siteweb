@@ -3,11 +3,11 @@
 banner:
   title: "Droit au vélo Nouvelle-Calédonie"
   content: "Promouvoir et développer la pratique du vélo en Nouvelle-Calédonie comme mode de déplacement propre et économique, particulièrement en milieu urbain, et comme alternative réaliste à la voiture."
-  image: "/images/475286617_1011074817715562_8184419828378983298_n.png"
+  image: "/images/barametre_velo_2025_nc.jpg"
   button:
-    enable: false
-    label: "Découvrir les actions menées"
-    link: "https://github.com/zeon-studio/hugoplate"
+    enable: true
+    label: "Participer au barometre vélo"
+    link: "https://www.barometre-velo.fr"
 
 # Features
 features:
