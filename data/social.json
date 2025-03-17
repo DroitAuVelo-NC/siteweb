@@ -6,6 +6,11 @@
       "link": "https://www.facebook.com/droitauvelonc"
     },
     {
+      "name": "youtube",
+      "icon": "fab fa-youtube",
+      "link": "https://www.youtube.com/@droit-au-velo-nc"
+    },
+    {
       "name": "linkedin",
       "icon": "fab fa-linkedin",
       "link": "https://www.linkedin.com/company/droit-au-velo-nc"
