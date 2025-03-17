@@ -12,10 +12,10 @@ banner:
 # Features
 features:
   - title: "Interventions"
-    image: "/images/service-1.png"
+    image: "/images/service-01-droitauvelo.nc.png"
     content: "Appui aux collectivités et aux pouvoirs publics"
     bulletpoints:
-      - "Force de proposition pour les projets d’aménagements, accompagnement dans le montage de demandes de fonds et la réalisation des aménagements, aide à l’élaboration de schéma mobilité (ville de Païta) ;"
+      - "Force de proposition pour les projets d'aménagements, accompagnement dans le montage de demandes de fonds et la réalisation des aménagements, aide à l’élaboration de schéma mobilité (ville de Païta) ;"
       - "Soutien aux projets de l’UNC de mise à disposition de vélos pour les étudiants et de création d’une piste cyclable provisoire sur la presqu'île de Nouville ;"
       - "Appui à l’ADEME dans l’identification d’actions et de partenariats pour l’appel à projets AVELO 3 qui vise à accompagner les collectivités dans la définition, l’expérimentation et l’animation de politiques cyclables ;"
       - "Sondages (ex: baromètre des villes cyclables), comptages vélo."
