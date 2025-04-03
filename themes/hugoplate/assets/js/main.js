@@ -62,6 +62,30 @@
   const signalerElement = document.getElementById('signaler');
   if (signalerElement) {
 
+      document.getElementById("fileInput").addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function () {
+            EXIF.getData(file, function () {
+                const lat = EXIF.getTag(this, "GPSLatitude");
+                const lon = EXIF.getTag(this, "GPSLongitude");
+                const latRef = EXIF.getTag(this, "GPSLatitudeRef");
+                const lonRef = EXIF.getTag(this, "GPSLongitudeRef");
+
+                if (lat && lon) {
+                    const latitude = convertToDecimal(lat, latRef);
+                    const longitude = convertToDecimal(lon, lonRef);
+                    document.getElementById("output").textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+                    updateCoordinates(latitude, longitude);
+                } else {
+                    document.getElementById("output").textContent = "No GPS data found.";
+                }
+            });
+        };
+        reader.readAsArrayBuffer(file);
+    });
+
     // Modal
     const confirmationModal = document.getElementById("confirmModal");
     confirmationModal.classList.add("hidden");
@@ -124,7 +148,7 @@
   
   // Check if the map element exists before initializing the map
   const mapElement = document.getElementById('map_signalement');
-  if (mapElement) {   
+  if (mapElement) {
   // MAP
   var map = L.map('map_signalement').setView([-22.2758, 166.458], 13);
     
