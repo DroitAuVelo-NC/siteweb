@@ -156,32 +156,32 @@
   
   function dmsToDecimalDegrees(dmsString) {
     // Split into latitude and longitude parts
-    const [latStr, lonStr] = dmsString.split(',' + ' ').reduce((acc, part) => {
-      if (acc.length === 0 || acc.length === 1 && /[NS]/.test(part)) {
-        acc.push(part);
-      } else {
-        acc[acc.length - 1] += ',' + part;
-      }
-      return acc;
-    }, []);
+    const parts = dmsString.split(/,\s*/);
   
-    // Helper function to convert DMS to decimal
-    function convert(part) {
-      const [degrees, minutes, secondsDirection] = part.split(',');
-      const seconds = parseFloat(secondsDirection);
-      const direction = secondsDirection.trim().slice(-1);
-      const cleanSeconds = parseFloat(secondsDirection);
-  
-      const decimal = 
-        Math.abs(parseFloat(degrees)) + 
-        Math.abs(parseFloat(minutes)) / 60 + 
-        Math.abs(parseFloat(seconds)) / 3600;
-  
-      return (direction === 'S' || direction === 'W') ? -decimal : decimal;
+    if (parts.length !== 6) {
+      throw new Error("Invalid DMS format. Expected format: DD,MM,SS.S D, DDD,MM,SS.S D");
     }
   
-    const latitude = convert(latStr);
-    const longitude = convert(lonStr);
+    // Parse Latitude
+    let latDegrees = parseFloat(parts[0]);
+    let latMinutes = parseFloat(parts[1]);
+    let latSeconds = parseFloat(parts[2]);
+    let latDirection = parts[3];
+  
+    // Parse Longitude
+    let lonDegrees = parseFloat(parts[4]);
+    let lonMinutes = parseFloat(parts[5]);
+    let lonSeconds = parseFloat(parts[6]);
+    let lonDirection = parts[7];
+  
+    // Convert to decimal degrees
+    function convertToDecimal(degrees, minutes, seconds, direction) {
+      let decimal = degrees + minutes / 60 + seconds / 3600;
+      return (direction === "S" || direction === "W") ? -decimal : decimal;
+    }
+  
+    let latitude = convertToDecimal(latDegrees, latMinutes, latSeconds, latDirection);
+    let longitude = convertToDecimal(lonDegrees, lonMinutes, lonSeconds, lonDirection);
   
     return { lat: latitude, lon: longitude };
   }
