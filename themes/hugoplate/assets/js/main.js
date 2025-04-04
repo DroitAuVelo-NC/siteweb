@@ -62,29 +62,34 @@
   const signalerElement = document.getElementById('signaler');
   if (signalerElement) {
 
-      document.getElementById("fileInput").addEventListener("change", function (event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function () {
-            EXIF.getData(file, function () {
-                const lat = EXIF.getTag(this, "GPSLatitude");
-                const lon = EXIF.getTag(this, "GPSLongitude");
-                const latRef = EXIF.getTag(this, "GPSLatitudeRef");
-                const lonRef = EXIF.getTag(this, "GPSLongitudeRef");
+      document.getElementById('fileInput').onchange = function (e){
+                let extension = e.target.files[0].name.toLowerCase().split('.').pop();
 
-                if (lat && lon) {
-                    const latitude = convertToDecimal(lat, latRef);
-                    const longitude = convertToDecimal(lon, lonRef);
-                    document.getElementById("output").textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
-                    updateCoordinates(latitude, longitude);
-                } else {
-                    document.getElementById("output").textContent = "No GPS data found.";
+                switch (extension)
+                {
+                    case 'jpeg':
+                    case 'jpg':
+                    case 'heic':
+                        let reader = new FileReader();
+
+                        reader.onload = function ()
+                        {
+                            let tags = extension == 'heic' ? findEXIFinHEIC(reader.result) : findEXIFinJPEG(reader.result);
+
+                            let latitudeComponents = tags['GPSLatitude'];
+                            let latitudeRef = tags['GPSLatitudeRef'];
+                            let longitudeComponents = tags['GPSLongitude'];
+                            let longitudeRef = tags['GPSLongitudeRef'];
+                            updateCoordinates(latitudeRef, latitudeComponents);
+                            document.getElementById('gps-coordinates').innerHTML = `The picture was taken at ${latitudeComponents} ${latitudeRef}, ${longitudeComponents} ${longitudeRef}.`;
+                        };
+
+                        reader.readAsArrayBuffer(e.target.files[0]);
+
+                        break;
                 }
-            });
-        };
-        reader.readAsArrayBuffer(file);
-    });
+            }
+
 
     // Modal
     const confirmationModal = document.getElementById("confirmModal");
