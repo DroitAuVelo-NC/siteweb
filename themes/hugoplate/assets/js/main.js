@@ -80,8 +80,11 @@
                             let latitudeRef = tags['GPSLatitudeRef'];
                             let longitudeComponents = tags['GPSLongitude'];
                             let longitudeRef = tags['GPSLongitudeRef'];
-                            
-                            document.getElementById('gps-coordinates').innerHTML = `The picture was taken at ${latitudeComponents} ${latitudeRef}, ${longitudeComponents} ${longitudeRef}.`;
+                            let inputCoordinate = "${latitudeComponents} ${latitudeRef}, ${longitudeComponents} ${longitudeRef}";
+
+                            const { lat, lng } = dmsToDecimalDegrees(inputCoordinate);
+                            updateCoordinates(lat,lng);
+                            document.getElementById('gps-coordinates').innerHTML = `The picture was taken at ${lat} ${latitudeRef}, ${lng}.`;
                         };
 
                         reader.readAsArrayBuffer(e.target.files[0]);
@@ -151,6 +154,38 @@
     });
   }
   
+  function dmsToDecimalDegrees(dmsString) {
+    // Split into latitude and longitude parts
+    const [latStr, lonStr] = dmsString.split(',' + ' ').reduce((acc, part) => {
+      if (acc.length === 0 || acc.length === 1 && /[NS]/.test(part)) {
+        acc.push(part);
+      } else {
+        acc[acc.length - 1] += ',' + part;
+      }
+      return acc;
+    }, []);
+  
+    // Helper function to convert DMS to decimal
+    function convert(part) {
+      const [degrees, minutes, secondsDirection] = part.split(',');
+      const seconds = parseFloat(secondsDirection);
+      const direction = secondsDirection.trim().slice(-1);
+      const cleanSeconds = parseFloat(secondsDirection);
+  
+      const decimal = 
+        Math.abs(parseFloat(degrees)) + 
+        Math.abs(parseFloat(minutes)) / 60 + 
+        Math.abs(parseFloat(seconds)) / 3600;
+  
+      return (direction === 'S' || direction === 'W') ? -decimal : decimal;
+    }
+  
+    const latitude = convert(latStr);
+    const longitude = convert(lonStr);
+  
+    return { lat: latitude, lon: longitude };
+  }
+
   // Check if the map element exists before initializing the map
   const mapElement = document.getElementById('map_signalement');
   if (mapElement) {
