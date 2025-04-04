@@ -80,7 +80,7 @@
                             let latitudeRef = tags['GPSLatitudeRef'];
                             let longitudeComponents = tags['GPSLongitude'];
                             let longitudeRef = tags['GPSLongitudeRef'];
-                            updateCoordinates(latitudeRef, latitudeComponents);
+                            
                             document.getElementById('gps-coordinates').innerHTML = `The picture was taken at ${latitudeComponents} ${latitudeRef}, ${longitudeComponents} ${longitudeRef}.`;
                         };
 
