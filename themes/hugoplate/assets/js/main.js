@@ -162,6 +162,7 @@
         };
     });
   }
+<<<<<<< HEAD
 
     function DMS2Decimal(degrees = 0, minutes = 0, seconds = 0, direction = 'N') {
       const directions = ['N', 'S', 'E', 'W'];
@@ -173,6 +174,39 @@
       let decimal = degrees + (minutes / 60) + (seconds / 3600);
       if (direction.toUpperCase() === 'S' || direction.toUpperCase() === 'W') decimal *= -1;
       return decimal;
+=======
+  
+  function dmsToDecimalDegrees(dmsString) {
+    // Split into latitude and longitude parts
+    const parts = dmsString.split(/,\s*/);
+  
+    if (parts.length !== 6) {
+      throw new Error("Invalid DMS format. Expected format: DD,MM,SS.S D, DDD,MM,SS.S D");
+    }
+  
+    // Parse Latitude
+    let latDegrees = parseFloat(parts[0]);
+    let latMinutes = parseFloat(parts[1]);
+    let latSeconds = parseFloat(parts[2]);
+    let latDirection = parts[3];
+  
+    // Parse Longitude
+    let lonDegrees = parseFloat(parts[4]);
+    let lonMinutes = parseFloat(parts[5]);
+    let lonSeconds = parseFloat(parts[6]);
+    let lonDirection = parts[7];
+  
+    // Convert to decimal degrees
+    function convertToDecimal(degrees, minutes, seconds, direction) {
+      let decimal = degrees + minutes / 60 + seconds / 3600;
+      return (direction === "S" || direction === "W") ? -decimal : decimal;
+    }
+  
+    let latitude = convertToDecimal(latDegrees, latMinutes, latSeconds, latDirection);
+    let longitude = convertToDecimal(lonDegrees, lonMinutes, lonSeconds, lonDirection);
+  
+    return { lat: latitude, lon: longitude };
+>>>>>>> 0b32f539b878ba22e6a6cc1e54f35edbd5912be5
   }
 
   // Check if the map element exists before initializing the map
