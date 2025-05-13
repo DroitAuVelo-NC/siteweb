@@ -22,7 +22,7 @@ mainSections = ["blog"]
 # contact form action
 contact_form_action = "https://forms.un-static.com/forms/eb852258be2e7095ea1bcec2bbe33f27cbf8b108" # contact form works with [https://airform.io/] or [https://formspree.io]
 # google tag manager, see https://developers.google.com/tag-manager/
-google_tag_manager = "" # example: G-XXXXXXXXXX
+google_tag_manager = "G-KRGM8VKCWN" # example: G-XXXXXXXXXX
 google_adsense = ""     # example: ca-pub-xxxxxxxxxxxxxxxx
 # custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>"
 custom_script = ""
@@ -81,10 +81,10 @@ mastodon = "" # Your verification code
 # cookies
 # cookies module: https://github.com/gethugothemes/hugo-modules/tree/master/components/cookie-consent
 [cookies]
-enable = false
+enable = true
 expire_days = 60
 content = "This site uses cookies. By continuing to use this website, you agree to their use."
-button = "I Accept"
+button = "J'accepte"
 
 # diagrams
 [mermaid]
