@@ -43,7 +43,7 @@
     "Espace": ["Dépôt sauvage", "Besoin d'élagage", "Besoin de fauchage", "Besoin de nettoyage"]
   };
 
-  function updateSubSelect() {
+  /*function updateSubSelect() {
       const mainSelect = document.getElementById("type_signalement");
       const subSelect = document.getElementById("subSelect");
       
@@ -57,7 +57,7 @@
               subSelect.appendChild(optionElement);
           });
       }
-  }
+  }*/
   
   const signalerElement = document.getElementById('signaler');
   if (signalerElement) {
@@ -111,7 +111,7 @@
     const modalContent = document.getElementById("modal-content");
 
     // Update sub select when main select changes
-    document.getElementById("type_signalement").addEventListener("change", updateSubSelect);
+    // document.getElementById("type_signalement").addEventListener("change", updateSubSelect);
     signalerElement.addEventListener("submit", async function(event) {
         event.preventDefault();
        
