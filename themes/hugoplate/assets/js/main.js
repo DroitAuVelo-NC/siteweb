@@ -92,7 +92,11 @@
                             } else {
                               marker = L.marker([lat, lng], { draggable: false }).addTo(map);
                             }
-                        
+
+                            document.getElementById('coords').value = `${lat}, ${lng}`;
+                            document.getElementById('long').value = `${lng}`;
+                            document.getElementById('lat').value = `${lat}`;
+
                             document.getElementById('gps-coordinates').innerHTML = `The picture was taken at ${lat} ${lng}.`;
                         };
 
