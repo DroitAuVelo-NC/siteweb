@@ -150,11 +150,9 @@
             let result = await response.json();
 
             // If result is succes     
-            if (response.ok) {
-              
-                
+            if (response.ok) {               
                 modalTitle.innerHTML = "Félicitation, le signalement a bien été envoyé !";
-                modalContent.innerHTML = "Merci pour votre contribution à l'amélioration de notre territoire. <br /><a href='/'>Retour à la page d'accueil</a>";
+                modalContent.innerHTML = "Merci pour votre contribution à l'amélioration de notre territoire. <br /><a href='/'>Retour à la page d'accueil</a> ou visiter <a href='https://www.facebook.com/droitauvelonc' target='_blank'>notre page Facebook droitauvelonc</a>";
                 document.getElementById("signaler").reset();
             } else {
                 alert("Une erreur s'est produite lors de l'envoi du signalement.");
