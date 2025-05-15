@@ -5,37 +5,21 @@
         <div id="map_signalement" class="mt-4 rounded border min-h-[300px]"></div>
     </section>
     <p class="mt-4">Cliquer sur la carte afin de pointer le lieu à signaler ou utiliser la géolocalisation.</p>
-    <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Me géolocaliser</button>
-    <form class="mt-4" id="signaler" method="POST">
-       <!-- <label for="type_signalement" class="mt-4 block">Catégorie :</label>
-        <select id="type_signalement" class="form-input mt-2" required>
-            <option value="">-- Séléctionner une catégorie --</option>
-            <option value="Signalisation">Signalisation</option>
-            <option value="Chaussee">Chaussée</option>
-            <option value="Travaux">Travaux</option>
-            <option value="Mobilier">Mobilier</option>
-            <option value="Espace">Espace verts / Propreté</option>
-        </select>
-    
-        <label for="subSelect" class="mt-4 block">Sous-catégorie :</label>
-        <select id="subSelect" class="form-input mt-2" required>
-            <option value="">-- Séléctionner une sous-catégorie --</option>
-        </select> -->
-        
+    <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Me géolocaliser : je suis sur place</button>
+    <form class="mt-4" id="signaler" method="POST">       
         <label for="fileInput" class="mt-4 block">Photo d'illustration :</label>
         <input type="file" id="fileInput" name="photo" class="form-input mt-2" accept="image/png, image/jpeg" required />
         
-        <label for="description" class="block mt-4">Description :</label>
-        <textarea id="description" name="description" class="form-input mt-2" placeholder="Décrire la problématique rencontrée" rows="6"></textarea>
+        <label for="description" class="block mt-4">Décrire la problématique rencontrée :</label>
+        <textarea id="description" name="description" class="form-input mt-2" placeholder="Problématique rencontrée" rows="6"></textarea>
         <input type="hidden" id="coords" name="coords" class="w-full border p-2 rounded mb-2" readonly required>
         <input type="hidden" id="long" name="long" readonly required>
         <input type="hidden" id="lat" name="lat" readonly required>
-
         <label for="email" class="block mt-4">Email :</label>
         <input type="email" id="email" name="email" class="w-full border p-2 rounded mb-2 mt-2 form-input">
         <label for="keepmeupdate" class="block mt-4 mb-2">
             <input type="checkbox" id="keepmeupdate" name="keepmeupdate" value="oui" class="form-checkbox">
-            Je souhaite être informé(e) de l'évolution de mon signalement ?
+            Je souhaite être informé(e) de l'évolution du signalement ?
         </label>
         <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded">Envoyer</button>
     </form>
@@ -46,30 +30,9 @@
 </section>
 
 <div class="relative z-10 hidden" aria-labelledby="modal-title" id="confirmModal" role="dialog" aria-modal="true">
-    <!--
-      Background backdrop, show/hide based on modal state.
-  
-      Entering: "ease-out duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
     <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
-  
     <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
       <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-        <!--
-          Modal panel, show/hide based on modal state.
-  
-          Entering: "ease-out duration-300"
-            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            To: "opacity-100 translate-y-0 sm:scale-100"
-          Leaving: "ease-in duration-200"
-            From: "opacity-100 translate-y-0 sm:scale-100"
-            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        -->
         <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
           <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="sm:flex sm:items-start">
