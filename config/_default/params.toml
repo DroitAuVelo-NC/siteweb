@@ -62,11 +62,11 @@ content = "You must replace the **baseURL** in **hugo.toml** file when deploying
 # seo meta data for OpenGraph / Twitter Card
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
-keywords = ["Boilerplate", "Hugo"]
-description = "Hugo & Tailwindcss Starter"
+keywords = ["droitauvelo.nc", "association", "noumea", "nouvelle-caledonie", "promotion du velo", "mode de deplacement alternatif"]
+description = "Hugo for droitauvelo"
 author = "zeon.studio"
 twitter = "zeon_studio"
-image = "images/og-image.png"
+image = "images/tn.png"
 
 
 # site verifications
@@ -83,7 +83,7 @@ mastodon = "" # Your verification code
 [cookies]
 enable = true
 expire_days = 60
-content = "This site uses cookies. By continuing to use this website, you agree to their use."
+content = "Ce site requiert des cookies. En continuant la navigation, acceptez-vous leurs usages ?"
 button = "J'accepte"
 
 # diagrams
