@@ -98,55 +98,76 @@
     const modalTitle = document.getElementById("modal-title");
     const modalContent = document.getElementById("modal-content");
 
-    signalerElement.addEventListener("submit", async function(event) {
-        event.preventDefault();
-       
-        let fileInput = document.getElementById("fileInput").files[0];
-        let pointOI = document.getElementById("coords").value;
-        if(pointOI === "") {
-          alert("Veuillez saisir un point sur la carte.");
-          return;
-        }
-        confirmationModal.classList.remove("hidden");
-        let reader = new FileReader();
-        if(fileInput !== undefined){
-          reader.readAsDataURL(fileInput);
-        }
-        
+  signalerElement.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    
+    let fileInputElement = document.getElementById("fileInput");
+    let fileInput = fileInputElement.files[0];
+    let pointOI = document.getElementById("coords").value;
+    
+    if (pointOI === "") {
+        alert("Veuillez saisir un point sur la carte.");
+        return;
+    }
+
+    confirmationModal.classList.remove("hidden");
+
+    // Prepare common data
+    const data = {
+        file: null,
+        fileType: "",
+        fileName: "",
+        email: document.getElementById("email").value,
+        type_signalement: '', // document.getElementById("type_signalement").value,
+        subSelect: '', // document.getElementById("subSelect").value,
+        description: document.getElementById("description").value,
+        keepmeupdate: document.getElementById("keepmeupdate").checked,
+        latitude: document.getElementById("long").value,
+        longitude: document.getElementById("lat").value,
+    };
+
+    // If a file is selected, read and encode it
+    if (fileInput !== undefined) {
+        const reader = new FileReader();
         reader.onload = async function() {
-            let base64File = reader.result.split(',')[1];
-            let data = {
-                file: base64File,
-                fileType: fileInput.type,
-                fileName: fileInput.name,
-                email: document.getElementById("email").value,
-                type_signalement: '', //document.getElementById("type_signalement").value,
-                subSelect: '', //document.getElementById("subSelect").value,
-                description: document.getElementById("description").value,
-                keepmeupdate: document.getElementById("keepmeupdate").checked,
-                latitude: document.getElementById("long").value,
-                longitude: document.getElementById("lat").value,
-            };
-            
-            // Envoi des données à Google Apps Script via cloudflare
-            let response = await fetch("https://white-truth-2869.droitauvelo-nc.workers.dev", {
+            data.file = reader.result.split(',')[1];  // base64 content
+            data.fileType = fileInput.type;
+            data.fileName = fileInput.name;
+
+            await sendData(data);
+        };
+        reader.readAsDataURL(fileInput);
+    } else {
+        // No file, send directly
+        await sendData(data);
+    }
+
+    async function sendData(payload) {
+        try {
+            const response = await fetch("https://white-truth-2869.droitauvelo-nc.workers.dev", {
                 method: "POST",
-                body: JSON.stringify(data),
+                body: JSON.stringify(payload),
                 headers: { "Content-Type": "application/json" }
             });
-            
-            let result = await response.json();
 
-            // If result is succes     
-            if (response.ok) {               
+            const result = await response.json();
+
+            if (response.ok) {
                 modalTitle.innerHTML = "Félicitation, le signalement a bien été envoyé !";
-                modalContent.innerHTML = "Merci pour votre contribution à l'amélioration de notre territoire. <br /><a class='btn btn-outline-primary' href='/'>Retour à la page d'accueil</a> ou visiter <a class='btn btn-outline-secondary'  href='https://www.facebook.com/droitauvelonc' target='_blank'>notre page Facebook droitauvelonc</a>";
+                modalContent.innerHTML = `Merci pour votre contribution à l'amélioration de notre territoire. <br />
+                    <a class='btn btn-outline-primary' href='/'>Retour à la page d'accueil</a> ou visiter 
+                    <a class='btn btn-outline-secondary' href='https://www.facebook.com/droitauvelonc' target='_blank'>
+                        notre page Facebook droitauvelonc</a>`;
                 document.getElementById("signaler").reset();
             } else {
                 alert("Une erreur s'est produite lors de l'envoi du signalement.");
             }
-        };
-    });
+        } catch (err) {
+            console.error("Erreur réseau :", err);
+            alert("Une erreur s'est produite lors de l'envoi.");
+        }
+    }
+});
   }
 
     function DMS2Decimal(degrees = 0, minutes = 0, seconds = 0, direction = 'N') {
