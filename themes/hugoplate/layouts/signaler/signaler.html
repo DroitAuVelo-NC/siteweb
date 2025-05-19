@@ -7,8 +7,8 @@
     <p class="mt-4">Cliquer sur la carte afin de pointer le lieu à signaler ou utiliser la géolocalisation.</p>
     <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Me géolocaliser : je suis sur place</button>
     <form class="mt-4" id="signaler" method="POST">       
-        <label for="fileInput" class="mt-4 block required mce_inline_error">Photo d'illustration :</label>
-        <input type="file" id="fileInput" name="photo" class="form-input mt-2 required mce_inline_error" accept="image/png, image/jpeg" required aria-required="true" />
+        <label for="fileInput" class="mt-4 block required mce_inline_error">Photo d'illustration (recommandée mais pas obligatoire) :</label>
+        <input type="file" id="fileInput" name="photo" class="form-input mt-2" accept="image/png, image/jpeg" />
         
         <label for="description" class="block mt-4">Décrire la problématique rencontrée :</label>
         <textarea id="description" name="description" class="form-input mt-2 required mce_inline_error" placeholder="Problématique rencontrée" rows="6" aria-required="true"></textarea>
