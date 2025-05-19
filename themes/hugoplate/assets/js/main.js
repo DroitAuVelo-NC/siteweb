@@ -43,22 +43,6 @@
     "Espace": ["Dépôt sauvage", "Besoin d'élagage", "Besoin de fauchage", "Besoin de nettoyage"]
   };
 
-  /*function updateSubSelect() {
-      const mainSelect = document.getElementById("type_signalement");
-      const subSelect = document.getElementById("subSelect");
-      
-      subSelect.innerHTML = '<option value="">-- Selectionner une sous-catégorie --</option>';
-      
-      if (mainSelect.value) {
-          options[mainSelect.value].forEach(subOption => {
-              let optionElement = document.createElement("option");
-              optionElement.value = subOption;
-              optionElement.textContent = subOption;
-              subSelect.appendChild(optionElement);
-          });
-      }
-  }*/
-  
   const signalerElement = document.getElementById('signaler');
   if (signalerElement) {
 
@@ -97,7 +81,7 @@
                             document.getElementById('long').value = `${lng}`;
                             document.getElementById('lat').value = `${lat}`;
 
-                            document.getElementById('gps-coordinates').innerHTML = `The picture was taken at ${lat} ${lng}.`;
+                            document.getElementById('gps-coordinates').innerHTML = `Les coordonnées GPS de la photo sont : ${lat} ${lng}.`;
                         };
 
                         reader.readAsArrayBuffer(e.target.files[0]);
@@ -114,8 +98,6 @@
     const modalTitle = document.getElementById("modal-title");
     const modalContent = document.getElementById("modal-content");
 
-    // Update sub select when main select changes
-    // document.getElementById("type_signalement").addEventListener("change", updateSubSelect);
     signalerElement.addEventListener("submit", async function(event) {
         event.preventDefault();
        
@@ -158,7 +140,7 @@
             // If result is succes     
             if (response.ok) {               
                 modalTitle.innerHTML = "Félicitation, le signalement a bien été envoyé !";
-                modalContent.innerHTML = "Merci pour votre contribution à l'amélioration de notre territoire. <br /><a href='/'>Retour à la page d'accueil</a> ou visiter <a href='https://www.facebook.com/droitauvelonc' target='_blank'>notre page Facebook droitauvelonc</a>";
+                modalContent.innerHTML = "Merci pour votre contribution à l'amélioration de notre territoire. <br /><a class='btn btn-outline-primary' href='/'>Retour à la page d'accueil</a> ou visiter <a class='btn btn-outline-secondary'  href='https://www.facebook.com/droitauvelonc' target='_blank'>notre page Facebook droitauvelonc</a>";
                 document.getElementById("signaler").reset();
             } else {
                 alert("Une erreur s'est produite lors de l'envoi du signalement.");
