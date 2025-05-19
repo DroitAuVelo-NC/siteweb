@@ -8,7 +8,7 @@
     <button id="locate" class="bg-blue-500 text-white px-4 py-2 rounded mt-2 mb-2">Me géolocaliser : je suis sur place</button>
     <form class="mt-4" id="signaler" method="POST">       
         <label for="fileInput" class="mt-4 block required mce_inline_error">Photo d'illustration (recommandée mais pas obligatoire) :</label>
-        <input type="file" id="fileInput" name="photo" class="form-input mt-2" accept="image/png, image/jpeg" />
+        <input type="file" id="fileInput" name="photo" class="form-input mt-2" accept="image/png, image/jpeg, image/heic" />
         
         <label for="description" class="block mt-4">Décrire la problématique rencontrée :</label>
         <textarea id="description" name="description" class="form-input mt-2 required" placeholder="Problématique rencontrée" required="required" rows="6" aria-required="true"></textarea>
@@ -22,6 +22,7 @@
             Je souhaite être informé(e) de l'évolution du signalement ?
         </label>
         <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded">Envoyer</button>
+        <img id="default_dav" src="https://example.com/default.jpg" alt="Image dav" />
     </form>
 
 
@@ -40,9 +41,9 @@
                 <svg class="size-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="on bbb"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"></path></svg>
               </div>
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 class="text-base font-semibold text-gray-900" id="modal-title">Signalement en cours d'enregistrement ...</h3>
+                <h3 class="text-base font-semibold text-gray-900" id="modal-title">Signalement en cours d'enregistrement, veuillez patienter.</h3>
                 <div class="mt-2">
-                  <p class="text-sm text-gray-500" id="modal-content">Vous pourrez suivre en temps réel l'ensemble des signalements recuillis.</p>
+                  <p class="text-sm text-gray-500" id="modal-content">L'ensemble des signalements recuillis seront analysés et traités par notre équipe.</p>
                 </div>
               </div>
             </div>
