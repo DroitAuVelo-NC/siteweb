@@ -127,7 +127,9 @@
         }
         confirmationModal.classList.remove("hidden");
         let reader = new FileReader();
-        reader.readAsDataURL(fileInput);
+        if(fileInput !== null){
+          reader.readAsDataURL(fileInput);
+        }
         
         reader.onload = async function() {
             let base64File = reader.result.split(',')[1];
