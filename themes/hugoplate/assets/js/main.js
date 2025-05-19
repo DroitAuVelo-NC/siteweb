@@ -127,7 +127,7 @@
         }
         confirmationModal.classList.remove("hidden");
         let reader = new FileReader();
-        if(fileInput !== null){
+        if(fileInput !== undefined){
           reader.readAsDataURL(fileInput);
         }
         
