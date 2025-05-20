@@ -11,10 +11,10 @@ name = "A propos"
 url = "/a-propos"
 weight = 2
 
-# [[main]]
-# name = "Elements"
-# url = "/elements"
-# weight = 3
+[[main]]
+name = "Signaler un point noir"
+url = "/signaler-promo"
+weight = 3
 
 # [[main]]
 # weight = 4
