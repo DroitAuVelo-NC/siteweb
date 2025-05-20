@@ -17,6 +17,19 @@
 // notice
 .notice {
   @apply rounded-lg;
+  p{
+    text-transform: lowercase;
+    &::first-letter{
+      text-transform: capitalize;
+    }
+  }
+}
+
+h1{
+    text-transform: lowercase;
+    &::first-letter{
+        text-transform: capitalize;
+    }
 }
 
 // tab

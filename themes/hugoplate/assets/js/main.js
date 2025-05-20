@@ -155,9 +155,7 @@
             if (response.ok) {
                 modalTitle.innerHTML = "Félicitation, le signalement a bien été envoyé !";
                 modalContent.innerHTML = `Merci pour votre contribution à l'amélioration de notre territoire. <br />
-                    <a class='btn btn-outline-primary' href='/'>Retour à la page d'accueil</a> ou visiter 
-                    <a class='btn btn-outline-secondary' href='https://www.facebook.com/droitauvelonc' target='_blank'>
-                        notre page Facebook droitauvelonc</a>`;
+                    <a class='btn btn-outline-primary' href='/signaler-promo'>Retour à la page de signalement</a>.`;
                 document.getElementById("signaler").reset();
             } else {
                 alert("Une erreur s'est produite lors de l'envoi du signalement.");
