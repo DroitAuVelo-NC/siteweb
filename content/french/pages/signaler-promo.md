@@ -32,7 +32,7 @@ Grâce à l'outil [Signalez un point noir](/signaler "Signalez un point noir"), 
 
 L'ensemble des signalements recuillis seront **analysés et traités par notre équipe**. Votre contribution est essentielle pour nous aider à identifier et à comprendre les problèmes sur le terrain.
 
-Vous rencontrez des difficultés ou souhaitez apporter des amélioration, vous pouvez [envoyer un messsage à notre équipe](/contact "envoyer un messsage").
+Vous rencontrez des difficultés ou souhaitez apporter des améliorations, vous pouvez [envoyer un messsage à notre équipe](/contact "envoyer un messsage").
 
 ### Restez informé(e) !
 
