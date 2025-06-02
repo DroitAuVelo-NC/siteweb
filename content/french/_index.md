@@ -2,12 +2,14 @@
 # Banner
 banner:
   title: "Droit au vélo Nouvelle-Calédonie"
-  content: "Promouvoir et développer la pratique du vélo en Nouvelle-Calédonie comme mode de déplacement propre et économique, particulièrement en milieu urbain, et comme alternative réaliste à la voiture."
-  image: "/images/barametre_velo_2025_nc.jpg"
+  content: "Promouvoir et développer la pratique du vélo en Nouvelle-Calédonie comme mode de déplacement propre et économique, particulièrement en milieu urbain, et comme alternative réaliste à la voiture.
+  
+  Signaler un point noir : c'est participer à l'amélioration de la qualité des aménagements cyclables"
+  image: "/images/signalement_pull.png"
   button:
     enable: true
-    label: "Participer au barometre vélo"
-    link: "https://www.barometre-velo.fr"
+    label: "Signaler un point noir"
+    link: "/signaler"
 
 # Features
 features:
