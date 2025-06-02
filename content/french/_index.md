@@ -2,14 +2,15 @@
 # Banner
 banner:
   title: "Droit au vélo Nouvelle-Calédonie"
-  content: "Promouvoir et développer la pratique du vélo en Nouvelle-Calédonie comme mode de déplacement propre et économique, particulièrement en milieu urbain, et comme alternative réaliste à la voiture.
-  
-  Signaler un point noir : c'est participer à l'amélioration de la qualité des aménagements cyclables"
+  content: "Promouvoir et développer la pratique du vélo en Nouvelle-Calédonie comme mode de déplacement propre et économique, particulièrement en milieu urbain, et comme alternative réaliste à la voiture."
   image: "/images/signalement_pull.png"
+  preTitle:
+    enable: true
+    text: "Participer à l'amélioration de la qualité des aménagements cyclables."
   button:
     enable: true
     label: "Signaler un point noir"
-    link: "/signaler"
+    link: "/signaler-promo/"
 
 # Features
 features:

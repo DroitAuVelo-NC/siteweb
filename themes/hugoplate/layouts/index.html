@@ -16,6 +16,13 @@
             {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" "DisplayXL" "800x" ) }}
           </div>
         <div class="lg:col-7 md:col-9 mb-8 text-center mt-4">
+
+
+          {{ with .preTitle }}
+          {{ if .enable }}
+          <h5 class=" mb-6">{{ .text }}</h5>
+          {{ end }}
+          {{ end }}
           {{ with .button }}
           {{ if .enable }}
             <a
