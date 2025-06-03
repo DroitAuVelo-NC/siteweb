@@ -10,6 +10,8 @@ tags: ["événement", "festival"]
 draft: false
 ---
 
+## Pourquoi ce festival ?
+
 Pour fêter ses 10 ans elle organise son premier festival de films 100% vélo.
 
 En septembre 2024, l’association organise « Le Vélo Fait Son Cinéma », un festival de films 100% vélo.
@@ -17,7 +19,8 @@ Concrètement ? 3 films, 4 séances et de nombreuses animations qui se dérouler
 
 Ces films parlent du vélo et questionnent les différentes manières d'en faire un acteur majeur de la transition environnementale et sociétale. Pour toutes et tous, ces films vous donneront envie de vous mettre en selle.
 
-Animations autour du vélo
+## Animations autour du vélo
+
 - Cyclobus pour se rendre au festival à vélo
 - Révision de cycles 2 heures avant la séance (selon les séances)
 - Débat après les projections
