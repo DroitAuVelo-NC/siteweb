@@ -4,7 +4,7 @@ meta_title: "Festival de films 100% vélo – Le Vélo Fait Son Cinéma – Sept
 description: "Dossier de presse"
 date: 2024-05-04T05:00:00Z
 image: "/images/blog-velo-festival.png"
-categories: ["Dossier de presse"]
+categories: ["Evènement"]
 author: "Ivan"
 tags: ["événement", "festival"]
 draft: false
