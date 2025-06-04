@@ -12,7 +12,7 @@ draft: false
 
 ## Pourquoi ce festival ?
 
-Pour fêter ses 10 ans elle organise son premier festival de films 100% vélo.
+Pour fêter ses 10 ans l'associciation organise un festival de films 100% vélo à travers toute la Nouvelle-Calédonie.
 
 En septembre 2024, l’association organise « Le Vélo Fait Son Cinéma », un festival de films 100% vélo.
 Concrètement ? 3 films, 4 séances et de nombreuses animations qui se dérouleront gratuitement entre le 14 et le 21 septembre sur Nouméa et Koné.
