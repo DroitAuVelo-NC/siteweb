@@ -25,7 +25,7 @@ features:
     button:
       enable: false
       label: "Adhérer à l'association"
-      link: "https://www.helloasso.com/associations/droit-au-velo-davnc/adhesions/bulletin-d-adhesion-droit-au-velo-nc"
+      link: "https://www.helloasso.com/associations/droit-au-velo-nouvelle-caledonie/adhesions/bulletin-d-adhesion-droit-au-velo-nc"
 
   - title: "Actions"
     image: "/images/service-2.png"
