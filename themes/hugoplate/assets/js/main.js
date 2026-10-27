@@ -72,7 +72,7 @@
 
                             //updateCoordinates(lat,lng);
                             if (marker) {
-                              marker.setLatLng(e.latlng);
+                              marker.setLatLng([lat, lng]);
                             } else {
                               marker = L.marker([lat, lng], { draggable: false }).addTo(map);
                             }
@@ -180,16 +180,130 @@
       return decimal;
   }
 
+  // Calques de la carte uMap "Vélo Nouvelle-Calédonie - Droit au vélo"
+  // ----------------------------------------
+  // Les calques alimentés par une source distante (Google Sheet, Grist) sont lus directement.
+  // Les calques stockés dans uMap ne sont pas accessibles depuis un autre site (CORS) :
+  // on utilise leur copie dans static/umap/<id du calque>.geojson.
+  const UMAP_URL = "https://umap.openstreetmap.fr";
+  const UMAP_ID = 1128154;
+
+  function loadUmapLayers(map, layersControl) {
+    fetch(`${UMAP_URL}/fr/map/${UMAP_ID}/geojson/`)
+      .then((response) => response.json())
+      .then((umap) => {
+        map.attributionControl.addAttribution(`<a href="${UMAP_URL}/fr/map/${UMAP_ID}" target="_blank" rel="noopener">uMap Droit au vélo NC</a>`);
+        umap.properties.datalayers.forEach((datalayer) => {
+          const options = datalayer.properties;
+          const color = escapeHTML(options.color || "DarkBlue");
+          const group = L.featureGroup();
+          // Les données sont chargées au premier affichage du calque
+          group.once("add", () => loadUmapDatalayer(datalayer.id, options, color, group));
+          layersControl.addOverlay(group, `<span class="umap-legend" style="background:${color}"></span>${escapeHTML(options.name)}`);
+          if (options.displayOnLoad !== false) group.addTo(map);
+        });
+      })
+      .catch((error) => console.error("Carte uMap indisponible :", error));
+  }
+
+  function loadUmapDatalayer(id, options, color, group) {
+    const remote = options.remoteData || {};
+    const iconUrl = options.iconUrl && (options.iconUrl.startsWith("http") ? options.iconUrl : UMAP_URL + options.iconUrl);
+
+    fetch(remote.url || `/umap/${id}.geojson`)
+      .then((response) => response.ok ? response.text() : Promise.reject(response.status))
+      .then((text) => {
+        L.geoJSON(remote.format === "csv" ? csvToGeoJSON(text) : JSON.parse(text), {
+          // bubblingMouseEvents: false => cliquer sur un point existant ouvre sa popup sans déplacer le marqueur du signalement
+          pointToLayer: (feature, latlng) => iconUrl
+            ? L.marker(latlng, { icon: L.divIcon({ className: "umap-icon", html: `<span style="background:${color}"><img src="${escapeHTML(iconUrl)}" alt=""></span>`, iconSize: [24, 24] }) })
+            : L.circleMarker(latlng, { radius: 6, color: "#fff", weight: 1, fillColor: color, fillOpacity: 0.9, bubblingMouseEvents: false }),
+          onEachFeature: (feature, layer) => layer.bindPopup(umapPopup(options, feature.properties)),
+        }).addTo(group);
+      })
+      .catch((error) => console.error(`Calque uMap "${options.name}" indisponible :`, error));
+  }
+
+  // Reprend la syntaxe des popups uMap : {champ}, # titre, **gras**, [[lien]] et [[lien|texte]]
+  function umapPopup(options, properties) {
+    const values = { name: options.name, ...properties };
+    return (options.popupContentTemplate || "# {name}\n{description}")
+      .replace(/\{([^{}]+)\}/g, (match, key) => escapeHTML(values[key] || ""))
+      .replace(/^### (.*)$/gm, "<h5>$1</h5>")
+      .replace(/^## (.*)$/gm, "<h4>$1</h4>")
+      .replace(/^# (.*)$/gm, "<h3>$1</h3>")
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\[\[(https?:\/\/[^\]|]+)\|([^\]]+)\]\]/g, '<a href="$1" target="_blank" rel="noopener">$2</a>')
+      .replace(/\[\[(https?:\/\/[^\]|]+)\]\]/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+      .replace(/\[\[[^\]]*\]\]/g, "")
+      .trim()
+      .replace(/\n/g, "<br>")
+      .replace(/(<\/h\d>)(<br>)+/g, "$1");
+  }
+
+  function csvToGeoJSON(text) {
+    const rows = parseCSV(text.replace(/^﻿/, ""));
+    const header = rows.shift().map((key) => key.trim());
+    const latKey = header.find((key) => /^lat(itude)?$/i.test(key));
+    const lngKey = header.find((key) => /^(lon|lng|long|longitude)$/i.test(key));
+    const features = [];
+
+    rows.forEach((row) => {
+      const properties = Object.fromEntries(header.map((key, i) => [key, row[i] || ""]));
+      const lat = parseFloat(String(properties[latKey]).replace(",", "."));
+      const lng = parseFloat(String(properties[lngKey]).replace(",", "."));
+      // Ignore les lignes sans coordonnées (vides ou à 0)
+      if (lat && lng) {
+        features.push({ type: "Feature", geometry: { type: "Point", coordinates: [lng, lat] }, properties });
+      }
+    });
+    return { type: "FeatureCollection", features };
+  }
+
+  function parseCSV(text) {
+    const rows = [[]];
+    let field = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      if (inQuotes) {
+        if (char === '"' && text[i + 1] === '"') { field += '"'; i++; }
+        else if (char === '"') inQuotes = false;
+        else field += char;
+      } else if (char === '"') inQuotes = true;
+      else if (char === ",") { rows[rows.length - 1].push(field); field = ""; }
+      else if (char === "\n") { rows[rows.length - 1].push(field); rows.push([]); field = ""; }
+      else if (char !== "\r") field += char;
+    }
+    rows[rows.length - 1].push(field);
+    return rows.filter((row) => row.some((value) => value !== ""));
+  }
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+  }
+
   // Check if the map element exists before initializing the map
   const mapElement = document.getElementById('map_signalement');
   if (mapElement) {
   // MAP
-  var map = L.map('map_signalement').setView([-22.2758, 166.458], 13);
-    
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
+  // preferCanvas : les calques uMap comptent plusieurs milliers de points
+  var map = L.map('map_signalement', { preferCanvas: true }).setView([-22.267533, 166.452055], 14);
+
+  // Fonds de carte : CyclOSM (celui de la carte uMap) ou OpenStreetMap
+  const cyclosm = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '<a href="https://www.cyclosm.org" target="_blank" rel="noopener">CyclOSM</a> | © OpenStreetMap contributors'
   }).addTo(map);
-    
+  const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+  });
+  const layersControl = L.control.layers({ "CyclOSM": cyclosm, "OpenStreetMap": osm }).addTo(map);
+
+  loadUmapLayers(map, layersControl);
+
   var marker;
 
   function updateCoordinates(lat, lng) {
