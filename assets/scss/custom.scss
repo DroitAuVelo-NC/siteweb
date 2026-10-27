@@ -1,1 +1,40 @@
 // Add your own custom styles here
+
+// Carte de signalement : éléments créés par Leaflet en JavaScript.
+// Ces styles doivent rester hors de @layer, sinon Tailwind les supprime
+// car ces classes n'apparaissent pas dans hugo_stats.json.
+#map_signalement {
+  // Pictogramme des calques uMap
+  .umap-icon span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  .umap-icon img {
+    width: 14px;
+    height: 14px;
+    filter: invert(1);
+  }
+
+  // Pastille de couleur dans le sélecteur de calques
+  .umap-legend {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 6px 0 4px;
+    border-radius: 50%;
+  }
+
+  .leaflet-popup-content {
+    h3, h4, h5 {
+      margin: 0 0 0.5rem;
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+  }
+}
